@@ -1,16 +1,6 @@
 import 'dart:io';
 
-Future<String> readFile(String filePath) async {
-  final basePath = Platform.script.toFilePath().split(".dart_tool").first;
-  var input = await File("${basePath}assets/$filePath").readAsString();
-  return input;
-}
-
-Future<List<dynamic>> readLines(String filePath) async {
-  final input = await readFile(filePath);
-  final list = input.split("\n");
-  return list;
-}
+import 'package:advent/common.dart';
 
 List<int> sortedLines(List<dynamic> lines) {
   final List<int> caloriesSumList = [];
@@ -40,9 +30,9 @@ int sumThreeLines(List<dynamic> lines) {
       value, element) => value + element);
 }
 
-void solve() {
-  readLines("1.txt").then((lines) {
-    print("Solution1: ${sumLines(lines)}");
-    print("Solution2: ${sumThreeLines(lines)}");
+Future<void> solve() async {
+  await readLines("1.txt").then((lines) {
+    print("Day 1, Ex1: ${sumLines(lines)}");
+    print("Day 1, Ex2: ${sumThreeLines(lines)}");
   });
 }

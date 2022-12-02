@@ -6,10 +6,6 @@ version: 1.0.0
 environment:
   sdk: '>=2.18.2 <3.0.0'
 
-flutter:
-  assets:
-    - assets/1.txt
-
 dependencies:
   path_provider: ^2.0.11
 
