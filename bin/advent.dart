@@ -11,11 +11,11 @@ void main(List<String> arguments) {
 }
 
 Future<void> solve() async {
-  // await first.solve();
-  // await second.solve();
-  // await third.solve();
-  // await fourth.solve();
-  // await fifth.solve();
-  // await sixth.solve();
+  await first.solve();
+  await second.solve();
+  await third.solve();
+  await fourth.solve();
+  await fifth.solve();
+  await sixth.solve();
   await seventh.solve();
 }
