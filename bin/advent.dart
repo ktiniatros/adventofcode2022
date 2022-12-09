@@ -5,17 +5,19 @@ import 'package:advent/4.dart' as fourth;
 import 'package:advent/5.dart' as fifth;
 import 'package:advent/6.dart' as sixth;
 import 'package:advent/7.dart' as seventh;
+import 'package:advent/8.dart' as eighth;
 
 void main(List<String> arguments) {
   solve();
 }
 
 Future<void> solve() async {
-  await first.solve();
-  await second.solve();
-  await third.solve();
-  await fourth.solve();
-  await fifth.solve();
-  await sixth.solve();
-  await seventh.solve();
+  // await first.solve();
+  // await second.solve();
+  // await third.solve();
+  // await fourth.solve();
+  // await fifth.solve();
+  // await sixth.solve();
+  // await seventh.solve();
+  await eighth.solve();
 }
