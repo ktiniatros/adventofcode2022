@@ -6,6 +6,7 @@ import 'package:advent/5.dart' as fifth;
 import 'package:advent/6.dart' as sixth;
 import 'package:advent/7.dart' as seventh;
 import 'package:advent/8.dart' as eighth;
+import 'package:advent/9.dart' as ninth;
 
 void main(List<String> arguments) {
   solve();
@@ -19,5 +20,6 @@ Future<void> solve() async {
   // await fifth.solve();
   // await sixth.solve();
   // await seventh.solve();
-  await eighth.solve();
+  // await eighth.solve();
+  await ninth.solve();
 }
