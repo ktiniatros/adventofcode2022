@@ -40,15 +40,16 @@ void moveAll2(List<String> lines) {
     final moveLength = int.parse(command[1]);
     for (var i = 1; i <= moveLength; i++) {
       parseHeadMove(command[0]);
+      var before = List.from(knotsPositions[0]);
       for (var j = 0; j < knotsPositions.length; j++) {
         if (j == 0) {
           parseTailMove(headPosition, knotsPositions[j], command[0]);
+          if (knotsPositions[j][0] == before[0] && knotsPositions[j][1] == before[1]) {
+            break;
+          }
         } else {
           parseTailMove(knotsPositions[j - 1], knotsPositions[j], command[0]);
         }
-      }
-      if (positions2[knotsPositions[8][0]][knotsPositions[8][1]] != '#') {
-        // print('tail position: ${knotsPositions[8]}');
       }
       positions2[knotsPositions[8][0]][knotsPositions[8][1]] = '#';
     }
@@ -79,7 +80,7 @@ void parseTailMove(List<int> headPosition, List<int> tailPosition, String direct
     // .T...
     // s.....
     tailPosition[0] = headPosition[0];
-    tailPosition[1] = (tailPosition[1]  + yDiff + offset(yDiff)).abs();
+    tailPosition[1] = (tailPosition[1]  + yDiff + offset(yDiff));
   } else if (yDistance == 1 && xDistance > 1) {
     // ......
     // ......
@@ -87,21 +88,21 @@ void parseTailMove(List<int> headPosition, List<int> tailPosition, String direct
     // ....T.
     // s.H...
     tailPosition[1] = headPosition[1];
-    tailPosition[0] = (tailPosition[0]  + xDiff + offset(xDiff)).abs();
+    tailPosition[0] = (tailPosition[0]  + xDiff + offset(xDiff));
   } else if (xDistance > 1 && yDistance == 0) {
     // ......
     // ......
     // ......
     // ......
     // sH.T..
-    tailPosition[0] = (tailPosition[0]  + xDiff + offset(xDiff)).abs();
+    tailPosition[0] = (tailPosition[0]  + xDiff + offset(xDiff));
   } else if (yDistance > 1 && xDistance == 0) {
     // ..H...
     // ......
     // ..T...
     // ......
     // s.....
-    tailPosition[1] = (tailPosition[1]  + yDiff + offset(yDiff)).abs();
+    tailPosition[1] = (tailPosition[1]  + yDiff + offset(yDiff));
   } else if (xDistance > 1 && yDistance > 1) {
     // ......     ......
     // ......     ......
@@ -119,13 +120,17 @@ void parseTailMove(List<int> headPosition, List<int> tailPosition, String direct
     // [2, 0]
     if (direction == 'U' || direction == 'D') {
       tailPosition[1] = headPosition[1];
-      tailPosition[0] = (tailPosition[0]  + xDiff + offset(xDiff)).abs();
+      tailPosition[0] = (tailPosition[0]  + xDiff + offset(xDiff));
     } else {
       tailPosition[0] = headPosition[0];
-      tailPosition[1] = (tailPosition[1]  + yDiff + offset(yDiff)).abs();
+      tailPosition[1] = (tailPosition[1]  + yDiff + offset(yDiff));
     }
   } else {
     if (xDistance > 1 || yDistance > 1) {
+      print('untracked movement $xDistance $yDistance');
+    }
+
+    if (xDistance == 1 && yDistance == 1) {
       print('untracked movement $xDistance $yDistance');
     }
 
@@ -163,6 +168,7 @@ Future<void> solve() async {
     // moveAll(lines);
     // print('calculating moves1 done..');
     // final finalScore = positions.flatten().where((element) => element == '#').length;
+
     positions2[startingX][startingY] = '#';
     print('moving rope2...');
     moveAll2(lines);
@@ -170,6 +176,7 @@ Future<void> solve() async {
     final finalScore2 = positions2.flatten().where((element) => element == '#').length;
     // print("Day 9, Ex1: $finalScore");
     print('2375 is too low');
+    print('2405 is the right one');
     print("Day 9, Ex2: $finalScore2");
   });
 }
