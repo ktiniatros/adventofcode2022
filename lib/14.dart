@@ -1,10 +1,15 @@
 import 'package:advent/common.dart';
 import 'package:dartx/dartx.dart';
+import 'package:equatable/equatable.dart';
 
-class Point {
+class Point extends Equatable {
   const Point(this.x, this.y);
   final int x;
   final int y;
+
+
+  @override
+  List<Object> get props => [x, y];
 
   @override
   String toString() {
